@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "GambleGuard",
+  "name": "BetBlocker",
   "version": "1.0.0",
   "description": "Block gambling websites and support your recovery journey",
   "permissions": ["storage", "tabs", "activeTab", "declarativeNetRequest"],
@@ -16,7 +16,7 @@
   ],
   "action": {
     "default_popup": "popup.html",
-    "default_title": "GambleGuard"
+    "default_title": "BetBlocker"
   },
   "declarative_net_request": {
     "rule_resources": [

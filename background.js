@@ -1,4 +1,4 @@
-// GambleGuard Background Service Worker
+// BetBlocker Background Service Worker
 
 const GAMBLING_DOMAINS = [
   // Major International Sportsbooks & Casinos
@@ -470,25 +470,25 @@ async function updateBlockingRules() {
 function isGamblingUrl(url) {
   try {
     const domain = new URL(url).hostname.toLowerCase();
-    console.log('GambleGuard: Checking domain:', domain);
+    console.log('BetBlocker: Checking domain:', domain);
 
     // Check exact domain matches
     const matchedDomain = GAMBLING_DOMAINS.find(d => domain === d || domain === `www.${d}` || domain.endsWith(`.${d}`));
     if (matchedDomain) {
-      console.log('GambleGuard: Domain matched:', matchedDomain);
+      console.log('BetBlocker: Domain matched:', matchedDomain);
       return true;
     }
 
     // Check keyword matches
     const matchedKeyword = GAMBLING_KEYWORDS.find(keyword => domain.includes(keyword));
     if (matchedKeyword) {
-      console.log('GambleGuard: Keyword matched:', matchedKeyword);
+      console.log('BetBlocker: Keyword matched:', matchedKeyword);
       return true;
     }
 
     return false;
   } catch (error) {
-    console.error('GambleGuard: Error checking URL:', url, error);
+    console.error('BetBlocker: Error checking URL:', url, error);
     return false;
   }
 }
@@ -498,15 +498,15 @@ chrome.tabs.onUpdated.addListener(async (tabId, changeInfo, tab) => {
   if (changeInfo.status === 'loading' && tab.url) {
     try {
       const { isEnabled } = await chrome.storage.local.get(['isEnabled']);
-      console.log('GambleGuard: Tab loading:', tab.url, 'Protection enabled:', isEnabled);
+      console.log('BetBlocker: Tab loading:', tab.url, 'Protection enabled:', isEnabled);
 
       if (isEnabled && isGamblingUrl(tab.url)) {
-        console.log('GambleGuard: Blocking gambling site:', tab.url);
+        console.log('BetBlocker: Blocking gambling site:', tab.url);
         await recordBlockedAttempt(tab.url);
         chrome.tabs.update(tabId, { url: chrome.runtime.getURL('block.html') });
       }
     } catch (error) {
-      console.error('GambleGuard: Error in tab update listener:', error);
+      console.error('BetBlocker: Error in tab update listener:', error);
     }
   }
 });

@@ -1,4 +1,4 @@
-# GambleGuard Chrome Extension
+# BetBlocker Chrome Extension
 
 A comprehensive Chrome extension designed to help individuals overcome gambling addiction by blocking access to betting websites and providing recovery support resources.
 
@@ -33,12 +33,12 @@ A comprehensive Chrome extension designed to help individuals overcome gambling 
 ### Method 1: Load as Unpacked Extension (Developer Mode)
 
 1. **Download the Extension Files**
-   - Save all the provided files in a folder named `gambleguard`
+   - Save all the provided files in a folder named `betblocker`
    - Required files:
      - `manifest.json`
      - `background.js`
      - `popup.html`
-     - `popup.js`
+     - `popup_js.js`
      - `content.js`
      - `block.html`
      - `rules.json`
@@ -49,12 +49,12 @@ A comprehensive Chrome extension designed to help individuals overcome gambling 
 
 3. **Load the Extension**
    - Click "Load unpacked"
-   - Select the `gambleguard` folder
+   - Select the `betblocker` folder
    - The extension should appear in your extensions list
 
 4. **Pin the Extension**
    - Click the puzzle piece icon in Chrome's toolbar
-   - Pin GambleGuard for easy access
+   - Pin BetBlocker for easy access
 
 ### Method 2: Create Extension Package
 
@@ -63,7 +63,7 @@ If you want to share with others or install more permanently:
 1. **Package the Extension**
    - In `chrome://extensions/` with Developer mode on
    - Click "Pack extension"
-   - Select the `gambleguard` folder
+   - Select the `betblocker` folder
    - This creates a `.crx` file
 
 2. **Install the Package**
@@ -73,11 +73,11 @@ If you want to share with others or install more permanently:
 ## File Structure
 
 ```
-gambleguard/
+betblocker/
 ├── manifest.json          # Extension configuration
 ├── background.js          # Service worker for blocking logic
 ├── popup.html            # Extension popup interface
-├── popup.js              # Popup functionality
+├── popup_js.js           # Popup functionality
 ├── content.js            # Content script for page analysis
 ├── block.html            # Blocking page with support resources
 ├── rules.json            # Declarative blocking rules
@@ -137,7 +137,7 @@ Modify the `GAMBLING_KEYWORDS` and `GAMBLING_PATTERNS` arrays in `content.js` to
 
 ## Privacy & Security
 
-- **No Data Collection**: GambleGuard only stores local statistics (blocked count, streak data)
+- **No Data Collection**: BetBlocker only stores local statistics (blocked count, streak data)
 - **No Tracking**: Your browsing history is not monitored or stored
 - **Local Storage**: All data stays on your device
 - **Open Source**: All code is transparent and can be reviewed
@@ -240,7 +240,7 @@ function isWhitelistedSite(url) {
 ```
 
 ### Custom Motivational Messages
-Add your own motivational messages by editing the `messages` array in `popup.js`:
+Add your own motivational messages by editing the `messages` array in `popup_js.js`:
 
 ```javascript
 const customMessages = [

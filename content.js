@@ -1,4 +1,4 @@
-// GambleGuard Content Script
+// BetBlocker Content Script
 
 // Gambling-related keywords for additional detection
 const GAMBLING_KEYWORDS = [
@@ -16,15 +16,15 @@ const GAMBLING_PATTERNS = [
 ];
 
 // Initialize content script
-(function() {
+(function () {
     'use strict';
-    
+
     // Check if protection is enabled
     checkProtectionStatus();
-    
+
     // Monitor for dynamically loaded gambling content
     observePageChanges();
-    
+
     // Check current page for gambling content
     scanPageContent();
 })();
@@ -33,7 +33,7 @@ const GAMBLING_PATTERNS = [
 async function checkProtectionStatus() {
     try {
         const result = await chrome.storage.local.get(['isEnabled', 'emergencyDisableTime', 'emergencyDisableDuration']);
-        
+
         // Check if emergency disable is active
         if (result.emergencyDisableTime && result.emergencyDisableDuration) {
             const disableEndTime = result.emergencyDisableTime + result.emergencyDisableDuration;
@@ -42,14 +42,14 @@ async function checkProtectionStatus() {
                 return false;
             } else {
                 // Emergency disable period expired, re-enable
-                await chrome.storage.local.set({ 
+                await chrome.storage.local.set({
                     isEnabled: true,
                     emergencyDisableTime: null,
                     emergencyDisableDuration: null
                 });
             }
         }
-        
+
         return result.isEnabled !== false; // Default to enabled
     } catch (error) {
         console.error('Error checking protection status:', error);
@@ -62,22 +62,22 @@ function scanPageContent() {
     const pageText = document.body.innerText.toLowerCase();
     const pageTitle = document.title.toLowerCase();
     const metaDescription = getMetaDescription().toLowerCase();
-    
+
     // Combine all text content
     const allContent = `${pageText} ${pageTitle} ${metaDescription}`;
-    
+
     // Check for gambling patterns
-    const hasGamblingContent = GAMBLING_PATTERNS.some(pattern => 
+    const hasGamblingContent = GAMBLING_PATTERNS.some(pattern =>
         pattern.test(allContent)
     );
-    
+
     if (hasGamblingContent) {
         // Additional checks to avoid false positives
         if (!isLegitimateFinancialSite() && !isNewsOrEducationalContent()) {
             logGamblingContentDetected();
         }
     }
-    
+
     // Scan for gambling advertisements
     scanForGamblingAds();
 }
@@ -94,7 +94,7 @@ function isLegitimateFinancialSite() {
         'bank', 'credit', 'invest', 'finance', 'payment', 'paypal',
         'stripe', 'square', 'visa', 'mastercard', 'amex'
     ];
-    
+
     const hostname = window.location.hostname.toLowerCase();
     return legitimateFinancialDomains.some(domain => hostname.includes(domain));
 }
@@ -102,10 +102,10 @@ function isLegitimateFinancialSite() {
 // Check if content is news or educational
 function isNewsOrEducationalContent() {
     const newsEducationalDomains = [
-        'news', 'edu', 'wikipedia', 'bbc', 'cnn', 'reuters', 
+        'news', 'edu', 'wikipedia', 'bbc', 'cnn', 'reuters',
         'nytimes', 'guardian', 'academic', 'research'
     ];
-    
+
     const hostname = window.location.hostname.toLowerCase();
     return newsEducationalDomains.some(domain => hostname.includes(domain));
 }
@@ -113,7 +113,7 @@ function isNewsOrEducationalContent() {
 // Log gambling content detection
 function logGamblingContentDetected() {
     console.log('GambleGuard: Potential gambling content detected on', window.location.hostname);
-    
+
     // Could be used for future features like warnings or blocking
     // For now, just log for monitoring purposes
 }
@@ -125,7 +125,7 @@ function scanForGamblingAds() {
         '[class*="ad"]', '[id*="ad"]', '.advertisement', '.sponsored',
         '[class*="banner"]', '[class*="promo"]', '.sidebar', '.widget'
     ];
-    
+
     adSelectors.forEach(selector => {
         const elements = document.querySelectorAll(selector);
         elements.forEach(element => {
@@ -140,10 +140,10 @@ function scanForGamblingAds() {
 function containsGamblingContent(element) {
     const text = element.innerText.toLowerCase();
     const html = element.innerHTML.toLowerCase();
-    
-    return GAMBLING_KEYWORDS.some(keyword => 
+
+    return GAMBLING_KEYWORDS.some(keyword =>
         text.includes(keyword) || html.includes(keyword)
-    ) || GAMBLING_PATTERNS.some(pattern => 
+    ) || GAMBLING_PATTERNS.some(pattern =>
         pattern.test(text) || pattern.test(html)
     );
 }
@@ -151,7 +151,7 @@ function containsGamblingContent(element) {
 // Hide gambling advertisement
 function hideGamblingAd(element) {
     element.style.display = 'none';
-    
+
     // Add a replacement message
     const replacement = document.createElement('div');
     replacement.style.cssText = `
@@ -164,11 +164,11 @@ function hideGamblingAd(element) {
         font-size: 14px;
         margin: 5px 0;
     `;
-    replacement.innerHTML = '🛡️ GambleGuard: Gambling ad blocked';
-    
+    replacement.innerHTML = '🛡️ BetBlocker: Gambling ad blocked';
+
     element.parentNode.insertBefore(replacement, element);
-    
-    console.log('GambleGuard: Blocked gambling advertisement');
+
+    console.log('BetBlocker: Blocked gambling advertisement');
 }
 
 // Observe page changes for dynamically loaded content
@@ -182,7 +182,7 @@ function observePageChanges() {
                         if (containsGamblingContent(node)) {
                             hideGamblingAd(node);
                         }
-                        
+
                         // Scan child elements
                         const childAds = node.querySelectorAll('[class*="ad"], [id*="ad"], .advertisement');
                         childAds.forEach(ad => {
@@ -195,7 +195,7 @@ function observePageChanges() {
             }
         });
     });
-    
+
     observer.observe(document.body, {
         childList: true,
         subtree: true
@@ -209,7 +209,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
             scanPageContent();
             sendResponse({ detected: true });
             break;
-            
+
         case 'getPageInfo':
             sendResponse({
                 url: window.location.href,
@@ -224,8 +224,8 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 function checkCurrentPageForGambling() {
     const pageText = document.body.innerText.toLowerCase();
     const pageTitle = document.title.toLowerCase();
-    
-    return GAMBLING_PATTERNS.some(pattern => 
+
+    return GAMBLING_PATTERNS.some(pattern =>
         pattern.test(pageText) || pattern.test(pageTitle)
     );
 }
@@ -256,7 +256,7 @@ function showEmergencySupport() {
         justify-content: center;
         font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     `;
-    
+
     overlay.innerHTML = `
         <div style="
             background: white;
@@ -287,9 +287,9 @@ function showEmergencySupport() {
             ">Close</button>
         </div>
     `;
-    
+
     document.body.appendChild(overlay);
-    
+
     // Auto-remove after 30 seconds
     setTimeout(() => {
         if (overlay.parentNode) {

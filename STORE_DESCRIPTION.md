@@ -1,7 +1,7 @@
-# GambleGuard - Chrome Web Store Description
+# BetBlocker - Chrome Web Store Description
 
 ## Title
-GambleGuard - Gambling Site Blocker & Recovery Support
+BetBlocker - Gambling Site Blocker & Recovery Support
 
 ## Short Description (132 characters max)
 Block 1000+ gambling sites instantly. Recovery-focused extension with support resources, streak tracking & motivational tools.
@@ -10,7 +10,7 @@ Block 1000+ gambling sites instantly. Recovery-focused extension with support re
 
 🛡️ **Take Control of Your Recovery Journey**
 
-GambleGuard is a powerful, recovery-focused Chrome extension designed to help you break free from gambling addiction. With over **1000+ gambling websites already blocked**, this extension provides comprehensive protection while supporting your path to recovery.
+BetBlocker is a powerful, recovery-focused Chrome extension designed to help you break free from gambling addiction. With over **1000+ gambling websites already blocked**, this extension provides comprehensive protection while supporting your path to recovery.
 
 ## 🚫 **Comprehensive Blocking Protection**
 • **1000+ Pre-loaded Sites**: Extensive database of gambling websites automatically blocked
@@ -53,9 +53,9 @@ GambleGuard is a powerful, recovery-focused Chrome extension designed to help yo
 ✅ **Progress celebration**
 ✅ **Privacy-focused design**
 
-## 🌟 **Why Choose GambleGuard?**
+## 🌟 **Why Choose BetBlocker?**
 
-**Recovery-Focused**: Unlike generic website blockers, GambleGuard is specifically designed for gambling addiction recovery, with features that understand and support your journey.
+**Recovery-Focused**: Unlike generic website blockers, BetBlocker is specifically designed for gambling addiction recovery, with features that understand and support your journey.
 
 **Comprehensive Database**: With 1000+ gambling sites already blocked, you're protected from day one without having to manually add sites.
 
@@ -73,14 +73,14 @@ GambleGuard is a powerful, recovery-focused Chrome extension designed to help yo
 • Individuals seeking comprehensive blocking with recovery support
 
 ## 🚀 **Get Started in Seconds**
-1. Install GambleGuard
+1. Install BetBlocker
 2. Choose your preferred theme
 3. Start browsing with confidence
 4. Watch your streak grow day by day
 
 ## 💪 **Join Thousands in Recovery**
 
-You're not alone in this journey. GambleGuard has helped thousands of people reclaim control over their lives and build healthier relationships with technology.
+You're not alone in this journey. BetBlocker has helped thousands of people reclaim control over their lives and build healthier relationships with technology.
 
 **Your recovery matters. Your progress counts. Every day gambling-free is a victory worth celebrating.**
 
