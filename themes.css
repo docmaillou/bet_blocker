@@ -1,0 +1,150 @@
+/* GambleGuard Theme Styles */
+
+/* Default Red Theme */
+body.theme-red {
+    background: #dc3545;
+    color: white;
+}
+
+body.theme-red .container {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+}
+
+body.theme-red .shield-icon {
+    color: white;
+}
+
+body.theme-red h1,
+body.theme-red h2 {
+    color: white;
+}
+
+body.theme-red .message-box {
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+}
+
+body.theme-red .stat-number {
+    color: #FFD700;
+}
+
+body.theme-red .btn-primary {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+body.theme-red .btn-primary:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+body.theme-red .btn-secondary {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+body.theme-red .btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* Blue & Purple Theme */
+body.theme-blue-purple {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+body.theme-blue-purple .container {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+}
+
+/* Green & Teal Theme */
+body.theme-green-teal {
+    background: linear-gradient(135deg, #4CAF50 0%, #00BCD4 100%);
+    color: white;
+}
+
+body.theme-green-teal .container {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+}
+
+body.theme-green-teal .stat-number {
+    color: #81C784;
+}
+
+body.theme-green-teal .btn-primary {
+    background: #4CAF50;
+}
+
+body.theme-green-teal .btn-primary:hover {
+    background: #45a049;
+}
+
+/* Dark Mode Theme */
+body.theme-dark-mode {
+    background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+    color: white;
+}
+
+body.theme-dark-mode .container {
+    background: rgba(255, 255, 255, 0.05);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+body.theme-dark-mode .message-box {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+body.theme-dark-mode .stat-number {
+    color: #3498db;
+}
+
+body.theme-dark-mode .btn-primary {
+    background: #3498db;
+}
+
+body.theme-dark-mode .btn-primary:hover {
+    background: #2980b9;
+}
+
+/* Sunset Theme */
+body.theme-sunset {
+    background: linear-gradient(135deg, #ff7e5f 0%, #feb47b 100%);
+    color: white;
+}
+
+body.theme-sunset .container {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+}
+
+body.theme-sunset .stat-number {
+    color: #FFD700;
+}
+
+body.theme-sunset .btn-primary {
+    background: #ff6b35;
+}
+
+body.theme-sunset .btn-primary:hover {
+    background: #e55a2b;
+}
+
+/* Common theme adjustments */
+body[class*="theme-"] .motivational-quotes {
+    border-left-color: currentColor;
+}
+
+body[class*="theme-"] .support-resources h3 {
+    color: #FFD700;
+}
+
+body[class*="theme-"] .resource-link:hover {
+    transform: translateX(5px);
+}

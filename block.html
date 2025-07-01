@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Site Blocked - GambleGuard</title>
+    <link rel="stylesheet" href="block.css">
+    <link rel="stylesheet" href="themes.css">
+</head>
+<body>
+    <div class="container">
+        <div class="shield-icon">🛡️</div>
+        <h1>Site Blocked</h1>
+        <h2>GambleGuard is protecting you</h2>
+        
+        <div class="message-box">
+            <p class="main-message">
+                This gambling site has been blocked to support your recovery journey.
+            </p>
+            <p class="encouragement">
+                You're stronger than this urge. Every moment of resistance builds your strength.
+            </p>
+        </div>
+
+        <div class="stats-display">
+            <div class="stat-item">
+                <span class="stat-number" id="streakDays">0</span>
+                <span class="stat-label">Days Clean</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number" id="blockedCount">0</span>
+                <span class="stat-label">Sites Blocked</span>
+            </div>
+        </div
+     
+
+        <div class="motivational-quotes">
+            <p class="quote" id="motivationalQuote">
+                "Recovery is not a race. You don't have to feel guilty if it takes you longer than you thought it would."
+            </p>
+        </div>
+
+        <div class="support-resources">
+            <h3>Need Help Right Now?</h3>
+            <div class="resource-links">
+                <a href="tel:1-800-522-4700" class="resource-link">
+                    📞 National Problem Gambling Helpline: 1-800-522-4700
+                </a>
+                <a href="https://www.gamblersanonymous.org" target="_blank" class="resource-link">
+                    🤝 Gamblers Anonymous
+                </a>
+                <a href="sms:741741&body=HOME" class="resource-link">
+                    💬 Crisis Text Line: Text HOME to 741741
+                </a>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>Blocked by GambleGuard • Your Recovery Companion</p>
+            <p class="timestamp" id="blockTime"></p>
+        </div>
+    </div>
+
+    <script>
+        // Load stats and display them
+        async function loadStats() {
+            try {
+                const response = await chrome.runtime.sendMessage({ action: 'getStats' });
+                if (response) {
+                    document.getElementById('streakDays').textContent = response.streakDays || 0;
+                    document.getElementById('blockedCount').textContent = response.blockedCount || 0;
+                }
+            } catch (error) {
+                console.log('Could not load stats:', error);
+            }
+        }
+
+        // Display motivational quotes
+        function displayMotivationalQuote() {
+            const quotes = [
+                "Recovery is not a race. You don't have to feel guilty if it takes you longer than you thought it would.",
+                "Every moment you choose recovery, you're choosing yourself.",
+                "You are stronger than your strongest urge.",
+                "Progress, not perfection, is the goal.",
+                "One day at a time, one choice at a time.",
+                "Your future self is counting on the choices you make today.",
+                "Healing is not linear, but every step forward counts.",
+                "You've survived 100% of your difficult days so far.",
+                "Recovery is giving yourself permission to live differently.",
+                "The urge will pass, but your strength will remain."
+            ];
+            
+            const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+            document.getElementById('motivationalQuote').textContent = randomQuote;
+        }
+
+        // Redirect to support resources
+        function redirectToSupport() {
+            console.log('Redirecting to support...');
+            try {
+                window.open('https://www.ncpgambling.org/help-treatment/national-helpline-1-800-522-4700/', '_blank');
+            } catch (error) {
+                console.error('Error opening support page:', error);
+                // Fallback: try direct navigation
+                window.location.href = 'https://www.ncpgambling.org/help-treatment/national-helpline-1-800-522-4700/';
+            }
+        }
+
+        // Redirect to healthy alternative sites
+        function redirectToHealthy() {
+            console.log('Redirecting to healthy site...');
+            const healthySites = [
+                'https://www.reddit.com/r/problemgambling',
+                'https://www.gamblersanonymous.org',
+                'https://www.ncpgambling.org',
+                'https://www.youtube.com/results?search_query=meditation',
+                'https://www.headspace.com',
+                'https://www.calm.com',
+                'https://www.duolingo.com',
+                'https://www.ted.com/talks',
+                'https://www.coursera.org'
+            ];
+
+            const randomSite = healthySites[Math.floor(Math.random() * healthySites.length)];
+            console.log('Selected healthy site:', randomSite);
+            try {
+                window.open(randomSite, '_blank');
+            } catch (error) {
+                console.error('Error opening healthy site:', error);
+                // Fallback: try direct navigation
+                window.location.href = randomSite;
+            }
+        }
+
+        // Go back to previous page or close tab
+        function closeTab() {
+            console.log('Attempting to close tab...');
+            try {
+                if (window.history.length > 1) {
+                    console.log('Going back in history...');
+                    window.history.back();
+                } else {
+                    console.log('Closing window...');
+                    window.close();
+                }
+            } catch (error) {
+                console.error('Error closing tab:', error);
+                // Fallback: try to navigate to a safe page
+                window.location.href = 'about:blank';
+            }
+        }
+
+        // Display current time
+        function displayBlockTime() {
+            const now = new Date();
+            const timeString = now.toLocaleString();
+            document.getElementById('blockTime').textContent = `Blocked at: ${timeString}`;
+        }
+
+        // Load and apply theme
+        async function loadTheme() {
+            try {
+                const result = await chrome.storage.sync.get(['selectedTheme']);
+                const theme = result.selectedTheme || 'red';
+                document.body.className = `theme-${theme}`;
+                console.log('Applied theme:', theme);
+            } catch (error) {
+                console.error('Error loading theme:', error);
+                // Default to red theme
+                document.body.className = 'theme-red';
+            }
+        }
+
+        // Initialize page - consolidated DOMContentLoaded listener
+        document.addEventListener('DOMContentLoaded', async function() {
+            console.log('Block page loaded, initializing...');
+
+            // Load theme first
+            await loadTheme();
+
+            // Load stats and display motivational quote
+            loadStats();
+            displayMotivationalQuote();
+            displayBlockTime();
+
+            // Set up button event listeners
+            console.log('Setting up button event listeners...');
+
+            // Get Support button
+            const supportBtn = document.getElementById('supportBtn');
+            if (supportBtn) {
+                supportBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    console.log('Support button clicked');
+
+                    // Visual feedback
+                    supportBtn.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        supportBtn.style.transform = '';
+                    }, 150);
+
+                    // Small delay to show visual feedback
+                    setTimeout(() => {
+                        redirectToSupport();
+                    }, 200);
+                });
+                console.log('Support button listener added');
+            } else {
+                console.error('Support button not found');
+            }
+
+            // Visit Healthy Site button
+            const healthyBtn = document.getElementById('healthyBtn');
+            if (healthyBtn) {
+                healthyBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    console.log('Healthy site button clicked');
+
+                    // Visual feedback
+                    healthyBtn.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        healthyBtn.style.transform = '';
+                    }, 150);
+
+                    // Small delay to show visual feedback
+                    setTimeout(() => {
+                        redirectToHealthy();
+                    }, 200);
+                });
+                console.log('Healthy site button listener added');
+            } else {
+                console.error('Healthy site button not found');
+            }
+
+            // Close Tab button
+            const closeBtn = document.getElementById('closeBtn');
+            if (closeBtn) {
+                closeBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    console.log('Close tab button clicked');
+
+                    // Visual feedback
+                    closeBtn.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        closeBtn.style.transform = '';
+                    }, 150);
+
+                    // Small delay to show visual feedback
+                    setTimeout(() => {
+                        closeTab();
+                    }, 200);
+                });
+                console.log('Close tab button listener added');
+            } else {
+                console.error('Close tab button not found');
+            }
+
+            console.log('All event listeners set up successfully');
+        });
+    </script>
+</body>
+</html>
