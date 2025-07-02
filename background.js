@@ -513,9 +513,15 @@ chrome.tabs.onUpdated.addListener(async (tabId, changeInfo, tab) => {
 
 // Record blocked attempt
 async function recordBlockedAttempt(url) {
-  const { blockedCount } = await chrome.storage.local.get(['blockedCount']);
+  const { blockedCount, lastBlockDate } = await chrome.storage.local.get(['blockedCount', 'lastBlockDate']);
+  const today = new Date().toDateString();
+
+  // Reset count if it's a new day
+  const todayCount = (lastBlockDate === today) ? (blockedCount || 0) + 1 : 1;
+
   await chrome.storage.local.set({
-    blockedCount: (blockedCount || 0) + 1,
+    blockedCount: todayCount,
+    lastBlockDate: today,
     lastBlockedSite: new URL(url).hostname,
     lastBlockTime: Date.now()
   });
@@ -545,9 +551,16 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 // Get statistics
 async function getStats() {
   const data = await chrome.storage.local.get([
-    'blockedCount', 'installDate', 'lastBlockedSite',
+    'blockedCount', 'lastBlockDate', 'installDate', 'lastBlockedSite',
     'lastBlockTime', 'streakStartDate', 'customBlockedSites'
   ]);
+
+  // Reset blocked count if it's a new day
+  const today = new Date().toDateString();
+  if (data.lastBlockDate !== today) {
+    await chrome.storage.local.set({ blockedCount: 0, lastBlockDate: today });
+    data.blockedCount = 0;
+  }
 
   const daysSinceInstall = Math.floor((Date.now() - data.installDate) / (1000 * 60 * 60 * 24));
   const streakDays = Math.floor((Date.now() - data.streakStartDate) / (1000 * 60 * 60 * 24));

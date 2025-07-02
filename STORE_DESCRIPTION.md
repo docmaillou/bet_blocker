@@ -4,16 +4,16 @@
 BetBlocker - Gambling Site Blocker & Recovery Support
 
 ## Short Description (132 characters max)
-Block 1000+ gambling sites instantly. Recovery-focused extension with support resources, streak tracking & motivational tools.
+Block 780+ gambling sites instantly. Recovery-focused extension with support resources, streak tracking & motivational tools.
 
 ## Detailed Description
 
 🛡️ **Take Control of Your Recovery Journey**
 
-BetBlocker is a powerful, recovery-focused Chrome extension designed to help you break free from gambling addiction. With over **1000+ gambling websites already blocked**, this extension provides comprehensive protection while supporting your path to recovery.
+BetBlocker is a powerful, recovery-focused Chrome extension designed to help you break free from gambling addiction. With **782 gambling websites already blocked**, this extension provides comprehensive protection while supporting your path to recovery.
 
 ## 🚫 **Comprehensive Blocking Protection**
-• **1000+ Pre-loaded Sites**: Extensive database of gambling websites automatically blocked
+• **782 Pre-loaded Sites**: Extensive database of gambling websites automatically blocked
 • **Custom Site Blocking**: Add any additional sites you want to block
 • **Real-time Protection**: Instant blocking as you browse
 • **Smart Detection**: Catches gambling sites across all categories (casinos, sports betting, poker, etc.)
@@ -42,7 +42,7 @@ BetBlocker is a powerful, recovery-focused Chrome extension designed to help you
 • **Emergency Override**: 1-hour temporary disable with strong warnings
 
 ## ⚡ **Key Features**
-✅ **1000+ gambling sites blocked automatically**
+✅ **782 gambling sites blocked automatically**
 ✅ **Custom site blocking capability**
 ✅ **Recovery streak tracking**
 ✅ **Motivational support system**
@@ -57,7 +57,7 @@ BetBlocker is a powerful, recovery-focused Chrome extension designed to help you
 
 **Recovery-Focused**: Unlike generic website blockers, BetBlocker is specifically designed for gambling addiction recovery, with features that understand and support your journey.
 
-**Comprehensive Database**: With 1000+ gambling sites already blocked, you're protected from day one without having to manually add sites.
+**Comprehensive Database**: With 782 gambling sites already blocked, you're protected from day one without having to manually add sites.
 
 **Support Network**: Direct access to professional help, crisis support, and recovery communities when you need them most.
 
